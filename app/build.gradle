@@ -1,6 +1,8 @@
 plugins {
     id 'com.android.application'
     id 'org.jetbrains.kotlin.android'
+    id 'kotlin-kapt'
+
 }
 
 android {
@@ -55,4 +57,9 @@ dependencies {
     implementation"androidx.viewpager2:viewpager2:1.0.0"
     //LottieAnimationView
     implementation 'com.airbnb.android:lottie:4.2.2'
+
+    def roomVersion = "2.4.2"
+    implementation "androidx.room:room-runtime:$roomVersion"
+    implementation "androidx.room:room-ktx:$roomVersion"
+    kapt "androidx.room:room-compiler:$roomVersion"
 }

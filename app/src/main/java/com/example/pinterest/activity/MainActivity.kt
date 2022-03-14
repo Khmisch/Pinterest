@@ -61,12 +61,4 @@ class MainActivity : AppCompatActivity() {
             super.onBackPressed()
     }
 
-    fun showBottomNavigation(){
-        bottomNavigationView.visibility = View.VISIBLE
-    }
-
-    fun hideBottomNavigation(){
-        bottomNavigationView.visibility = View.GONE
-    }
-
 }

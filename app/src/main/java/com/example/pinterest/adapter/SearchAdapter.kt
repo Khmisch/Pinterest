@@ -12,6 +12,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.example.pinterest.R
+import com.example.pinterest.activity.DetailsActivity
 import com.example.pinterest.activity.MainActivity
 import com.example.pinterest.fragment.DetailsFragment
 import com.example.pinterest.fragment.HomeFragment
@@ -57,9 +58,17 @@ class SearchAdapter  (var context: SearchFragment, var items: ArrayList<Photo>) 
                     .into(holder.iv_pin)
 
                 holder.iv_pin.setOnClickListener {
-
+                    callDetails(position)
                 }
             }
+    }
+
+    private fun callDetails(position: Int) {
+        val intent = Intent(context.activity, DetailsActivity::class.java)
+        val json = Gson().toJson(items)
+        intent.putExtra("photoList", json)
+        intent.putExtra("position", position)
+        context.startActivity(intent)
     }
 
 

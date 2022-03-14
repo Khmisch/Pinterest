@@ -11,23 +11,17 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.bumptech.glide.Glide
-
 import com.example.pinterest.R
 import com.example.pinterest.activity.DetailsActivity
+import com.example.pinterest.manager.PrefsManager
 import com.example.pinterest.model.Photo
-import com.example.pinterest.model.RelatedPhotos
-import com.example.pinterest.network.RetrofitHttp
-import com.google.android.material.imageview.ShapeableImageView
 import com.google.gson.Gson
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
-class DetailsAdapter(private var context: Context) :
+class ResultPhotosAdapter(private var context: Context) :
     RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
+    private val prefsManager = PrefsManager.getInstance(context)
     private var photoList = ArrayList<Photo>()
 
     @SuppressLint("NotifyDataSetChanged")
@@ -75,9 +69,8 @@ class DetailsAdapter(private var context: Context) :
 
     private fun callDetails(position: Int) {
         val intent = Intent(context, DetailsActivity::class.java)
-        val json = Gson().toJson(photoList)
-        intent.putExtra("photoList", json)
         intent.putExtra("position", position)
+        prefsManager!!.saveArrayList(PrefsManager.KEY_PHOTO_LIST, photoList)
         context.startActivity(intent)
     }
 

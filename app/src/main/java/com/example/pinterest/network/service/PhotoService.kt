@@ -1,10 +1,8 @@
 package com.example.pinterest.network.service
 
-import com.example.pinterest.model.Photo
-import com.example.pinterest.model.RelatedPhotos
-import com.example.pinterest.model.Search
-import com.example.mypinterest.model.Topic
-import com.example.pinterest.model.Collection
+import com.example.pinterest.model.Topic
+import com.example.pinterest.model.*
+import com.example.pinterest.model.profile.ProfileResp
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.Headers
@@ -33,14 +31,29 @@ interface PhotoService {
     fun searchPhoto(@Query("query") query: String, @Query("page") page: Int, @Query("per_page") per_page: Int): Call<Search>
 
     @Headers("Authorization: Client-ID $ACCESS_KEY")
+    @GET("search/users")
+    fun getSearchProfile(
+        @Query("page") page: Int,
+        @Query("query") query: String,
+        @Query("per_page") perPage: Int
+    ): Call<ResultProfiles>
+
+    @Headers("Authorization:Client-ID $ACCESS_KEY")
+    @GET("photos/random")
+    fun getRandomPhotos(
+        @Query("query") query: String,
+        @Query("orientation") orientation: String,
+        @Query("count") count: Int
+    ): Call<Photos>
+
+    @Headers("Authorization:Client-ID $ACCESS_KEY")
     @GET("topics")
-    fun getTopics(@Query("page") page: Int = 2, @Query("per_page") per_page: Int = 10): Call<ArrayList<Topic>>
+    fun getTopics(
+        @Query("page") page: Int,
+        @Query("per_page") perPage: Int
+    ): Call<ArrayList<Topic>>
 
-
-    @Headers("Authorization: Client-ID $ACCESS_KEY")
-    @GET("collections")
-    fun getCollections(@Query("page") page: Int = 2, @Query("per_page") per_page: Int = 10): Call<ArrayList<Collection>>
-
-
-
+    @Headers("Authorization:Client-ID $ACCESS_KEY")
+    @GET("users/{username}")
+    fun getUser(@Path("username") username: String): Call<ProfileResp>
 }

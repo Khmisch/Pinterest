@@ -2,4 +2,5 @@
     <string name="app_name">Pinterest</string>
     <string name="new_item">new item</string>
     <string name="share_ideas_with_your_friends">Share ideas with your friends</string>
+    <string name="related_photo_not_found">Related photos not found</string>
 </resources>

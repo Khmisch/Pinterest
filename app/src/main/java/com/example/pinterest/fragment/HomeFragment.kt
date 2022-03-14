@@ -16,6 +16,7 @@ import com.example.pinterest.activity.DetailsActivity
 import com.example.pinterest.adapter.HomeAdapter
 import com.example.pinterest.model.Photo
 import com.example.pinterest.network.RetrofitHttp
+import com.google.gson.Gson
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -73,8 +74,5 @@ class HomeFragment : Fragment() {
         recyclerView.adapter = adapter
     }
 
-    fun callDetailsActivity(photo: Photo){
-        var intent = Intent(activity, DetailsActivity::class.java)
-        startActivity(intent)
-    }
+
 }

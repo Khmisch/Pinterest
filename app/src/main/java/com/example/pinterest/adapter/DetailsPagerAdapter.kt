@@ -3,8 +3,9 @@ package com.example.pinterest.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 
-class DetailsPagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm) {
+class DetailsPagerAdapter(fm: FragmentManager) : FragmentStatePagerAdapter(fm) {
 
     var fragments = ArrayList<Fragment>()
 
